@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuroEase -- Productivity Without Overwhelm</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAF8F5;
+    --bg-card:#FFFFFF;
+    --bg-alt:#F0EDE8;
+    --text:#1A1C1E;
+    --text-secondary:#5C6065;
+    --text-muted:#8B9098;
+    --line:#E4E0DA;
+    --line-light:#EDE9E4;
+
+    --accent:#3B7E6E;
+    --accent-light:#E8F2EF;
+    --accent-dark:#2A5E52;
+    --warm:#C97B5A;
+    --warm-light:#F5EBE6;
+    --gold:#B8955A;
+    --gold-light:#F4EFE8;
+    --sky:#5A8BA8;
+    --sky-light:#EAF1F5;
+    --purple:#8B7BB5;
+    --purple-light:#F0ECF7;
+    --purple-dim:#6B5D91;
+
+    /* awareness colors */
+    --awareness-gold:#D4A84B;   /* neurodiversity infinity, autism acceptance */
+    --awareness-orange:#D4825A; /* ADHD awareness */
+    --awareness-green:#5A9B6E;  /* mental health awareness */
+    --awareness-blue:#5A7BA8;   /* dyslexia awareness */
+    --awareness-red:#B56A6A;    /* autism acceptance variant */
+
+    --radius:20px;
+    --radius-sm:12px;
+
+    --font-display:'Inter',system-ui,sans-serif;
+    --font-body:'DM Sans',system-ui,sans-serif;
+
+    --shadow-sm:0 1px 3px rgba(0,0,0,0.04);
+    --shadow-md:0 4px 16px rgba(0,0,0,0.06);
+    --shadow-lg:0 8px 40px rgba(0,0,0,0.08);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,h4,.h{
+    font-family:var(--font-display);
+    font-weight:700;
+    letter-spacing:-0.02em;
+    line-height:1.25;
+  }
+  h1{font-size:clamp(2rem,4.5vw,3.6rem); font-weight:800;}
+  h2{font-size:clamp(1.5rem,3vw,2.2rem);}
+  h3{font-size:clamp(1.15rem,1.8vw,1.4rem);}
+  h4{font-size:1.05rem; font-weight:600;}
+
+  .sub{font-size:1.05rem; color:var(--text-secondary); line-height:1.55; max-width:640px;}
+  .sm{font-size:0.85rem; color:var(--text-muted); line-height:1.5;}
+  a{color:var(--accent); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  .container{max-width:1120px; margin:0 auto; padding:0 24px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px; position:sticky; top:0; z-index:50;
+    background:rgba(250,248,245,0.92); backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .awareness-strip{height:3px; background:linear-gradient(90deg, var(--awareness-gold) 0%, var(--awareness-orange) 20%, var(--awareness-green) 40%, var(--accent) 60%, var(--awareness-blue) 80%, var(--purple) 100%); position:sticky; top:0; z-index:51;}
+  .logo{font-family:var(--font-display); font-weight:800; font-size:1.1rem; letter-spacing:-0.03em;}
+  .logo span{color:var(--purple);}
+  .nav-links{display:flex; gap:20px; align-items:center;}
+  .nav-links a{font-size:0.88rem; font-weight:500; color:var(--text-secondary); transition:color .15s;}
+  .nav-links a:hover{color:var(--purple); text-decoration:none;}
+  .btn{
+    display:inline-flex; align-items:center; gap:6px;
+    padding:10px 22px; border-radius:100px;
+    font-family:var(--font-display); font-weight:600; font-size:0.88rem;
+    border:none; cursor:pointer; transition:all .2s;
+    text-decoration:none;
+  }
+  .btn-primary{background:var(--purple); color:#fff;}
+  .btn-primary:hover{background:var(--purple-dim); transform:translateY(-1px); text-decoration:none;}
+  .btn-outline{background:transparent; border:1.5px solid var(--line); color:var(--text);}
+  .btn-outline:hover{border-color:var(--accent); color:var(--accent); text-decoration:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:80px 24px 64px; text-align:center;
+    background:linear-gradient(180deg, var(--purple-light) 0%, var(--warm-light) 25%, var(--accent-light) 55%, var(--bg) 100%);
+  }
+  .hero h1{max-width:780px; margin:0 auto 16px;}
+  .hero .sub{max-width:580px; margin:0 auto 32px;}
+  .hero-actions{display:flex; gap:12px; justify-content:center; flex-wrap:wrap;}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:72px 0;}
+  .section-label{
+    font-family:var(--font-display); font-weight:600; font-size:0.75rem;
+    text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--purple); margin-bottom:6px;
+  }
+  .section-title{max-width:680px;}
+  .section-title.center{margin:0 auto; text-align:center;}
+
+  /* ---------- STORY ---------- */
+  .story-block{
+    background:var(--bg-card); border-radius:var(--radius); padding:40px 44px;
+    border:1px solid var(--line); margin-top:28px;
+  }
+  .story-block p + p{margin-top:16px;}
+  .story-block p{font-size:1rem; color:var(--text-secondary);}
+
+  /* ---------- GRID CARDS ---------- */
+  .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:28px;}
+  .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:28px;}
+  .card{
+    background:var(--bg-card); border-radius:var(--radius); padding:32px 28px;
+    border:1px solid var(--line); box-shadow:var(--shadow-sm);
+  }
+  .card h4{margin-bottom:6px;}
+  .card p{font-size:0.92rem; color:var(--text-secondary); line-height:1.55;}
+
+  /* ---------- NEURODIVERGENCE EXPLANATION ---------- */
+  .nd-highlight{
+    background:linear-gradient(135deg, var(--accent-dark) 0%, var(--purple-dim) 100%); color:#fff; border-radius:var(--radius);
+    padding:36px 44px; margin-top:28px;
+  }
+  .nd-highlight h3{color:var(--gold); margin-bottom:12px;}
+  .nd-highlight p{font-size:0.95rem; opacity:0.9; line-height:1.55;}
+  .nd-highlight p + p{margin-top:12px;}
+
+  .stat-row{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+    margin-top:28px;
+  }
+  .stat-item{text-align:center; padding:20px; background:var(--bg-card); border-radius:var(--radius-sm); border:1px solid var(--line);}
+  .stat-item .num{font-family:var(--font-display); font-weight:800; font-size:2rem; color:var(--purple); line-height:1;}
+  .stat-item .lbl{font-size:0.82rem; color:var(--text-muted); margin-top:6px;}
+
+  /* ---------- STRATEGIES ---------- */
+  .strategy-card{
+    background:var(--bg-card); border-radius:var(--radius); padding:28px;
+    border:1px solid var(--line); border-left:3px solid var(--accent);
+  }
+  .strategy-card h4{margin-bottom:4px;}
+  .strategy-card .source{font-size:0.78rem; color:var(--text-muted); margin-top:10px; font-style:italic;}
+
+  /* ---------- FOR NEUROTYPICAL ---------- */
+  .nt-section{background:var(--bg-alt);}
+  .nt-list{list-style:none; padding:0; margin-top:20px;}
+  .nt-list li{
+    padding:16px 20px; background:var(--bg-card); border-radius:var(--radius-sm);
+    border:1px solid var(--line); margin-bottom:10px;
+    font-size:0.92rem; color:var(--text-secondary);
+  }
+  .nt-list li strong{color:var(--text);}
+
+  /* ---------- ABOUT / CONTACT ---------- */
+  .about-wrap{
+    display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-top:28px;
+  }
+  .about-card{
+    background:var(--bg-card); border-radius:var(--radius); padding:32px;
+    border:1px solid var(--line);
+  }
+  .about-card h4{margin-bottom:8px;}
+  .about-card p{font-size:0.92rem; color:var(--text-secondary); line-height:1.55;}
+  .contact-links{display:flex; gap:12px; flex-wrap:wrap; margin-top:16px;}
+  .contact-links a{
+    padding:8px 18px; border-radius:100px; font-size:0.85rem; font-weight:500;
+    background:var(--accent-light); color:var(--accent-dark); transition:background .2s;
+  }
+  .contact-links a:hover{background:var(--purple); color:#fff; text-decoration:none;}
+
+  /* ---------- REFERENCES ---------- */
+  .ref-list{list-style:none; padding:0; margin-top:16px;}
+  .ref-list li{
+    padding:10px 0; border-bottom:1px solid var(--line-light);
+    font-size:0.82rem; color:var(--text-secondary);
+  }
+  .ref-list li:last-child{border-bottom:none;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:28px 24px; text-align:center;
+    border-top:1px solid var(--line);
+    font-size:0.82rem; color:var(--text-muted);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:800px){
+    .grid-2,.grid-3,.stat-row,.about-wrap{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+    .hero{padding:56px 20px 44px;}
+    section{padding:48px 0;}
+    .story-block{padding:28px 24px;}
+    .nd-highlight{padding:28px 24px;}
+  }
+
+  /* ---------- SCROLL REVEAL ---------- */
+  .reveal{opacity:0; transform:translateY(12px); transition:all .5s ease;}
+  .reveal.visible{opacity:1; transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<div class="awareness-strip"></div>
+<nav>
+  <div class="logo">Neuro<span>Ease</span></div>
+  <div class="nav-links">
+    <a href="#story">Story</a>
+    <a href="#understanding">Understanding</a>
+    <a href="#strategies">Strategies</a>
+    <a href="#everyone">For Everyone</a>
+    <a href="#about">About</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Productivity tools were built for a brain that is not yours.</h1>
+  <p class="sub">NeuroEase is a project that rethinks productivity from the ground up -- designed for neurodivergent minds, backed by research, and open to everyone who has ever felt that the standard way of doing things does not work for them.</p>
+  <div class="hero-actions">
+    <a href="#story" class="btn btn-primary">Read the story</a>
+    <a href="#understanding" class="btn btn-outline">Learn more</a>
+  </div>
+</section>
+
+<!-- STORY -->
+<section id="story">
+  <div class="container">
+    <p class="section-label">Origin</p>
+    <h2 class="section-title">The goal, purpose, and meaning behind NeuroEase</h2>
+    <div class="story-block">
+      <p>NeuroEase started from a simple observation: the tools we use to manage our days, our tasks, and our lives were designed for a narrow definition of how a brain should work. Strict schedules, linear to-do lists, uniform work environments -- these work well for some, but for an estimated 15-20% of the population whose brains process information differently, they create more stress than structure.</p>
+      <p>The goal of NeuroEase is not to build another productivity app. The goal is to build a framework of tools, strategies, and awareness that adapts to the user, not the other way around. This means task management that understands executive dysfunction. Mood tracking that does not judge. Reminders that support instead of pressure. And a design philosophy that treats cognitive diversity as a normal and valuable part of being human.</p>
+      <p>The purpose is twofold. First, to give neurodivergent individuals -- people with ADHD, autism spectrum conditions, dyslexia, dyspraxia, and related cognitive differences -- tools that work with their actual neurology, reducing daily friction and freeing up mental energy for what matters. Second, to raise awareness in the broader world about what neurodivergence actually is, how it affects daily life, and why inclusive design benefits everyone.</p>
+      <p>At its core, NeuroEase is a belief that productivity should not require you to fight your own brain. The meaning of this project is in that shift: from forcing yourself into someone else's system, to building a system that fits how you actually think, feel, and function.</p>
+    </div>
+  </div>
+</section>
+
+<!-- UNDERSTANDING NEURODIVERGENCE -->
+<section id="understanding" style="background:var(--bg-alt);">
+  <div class="container">
+    <p class="section-label">Understanding neurodivergence</p>
+    <h2 class="section-title">What it is and why traditional productivity falls short</h2>
+
+    <p class="sub" style="margin-top:12px;">Neurodivergence refers to natural variations in how the human brain processes information, manages attention, regulates emotions, and interacts with the world. It is not a disorder to be fixed -- it is a different operating system.</p>
+
+    <div class="nd-highlight">
+      <h3>Executive Dysfunction -- the core challenge</h3>
+      <p>Executive functions are the brain's management system: planning, task initiation, time management, working memory, emotional regulation, impulse control, and cognitive flexibility. When these functions are impaired -- as they frequently are in ADHD and autism -- everyday tasks can feel impossibly difficult not because the person is lazy or unmotivated, but because the neurological machinery required to start, sequence, and complete tasks is working differently.</p>
+      <p>According to the Cleveland Clinic, executive dysfunction is a symptom that affects the ability to organize thoughts, manage time, and regulate emotions. It is strongly associated with ADHD and autism spectrum disorder, but can also appear in anxiety, depression, and traumatic brain injury. Research published in Nature Reviews Psychology (Kofler et al., 2024) confirms that both children and adults with ADHD and ASD perform moderately worse on a broad range of executive function measures compared to neurotypical peers -- though the specific profiles vary widely between individuals.</p>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-item"><div class="num">15-20%</div><div class="lbl">of the workforce is neurodivergent (Simply Psychology, 2026)</div></div>
+      <div class="stat-item"><div class="num">70-80%</div><div class="lbl">of autistic individuals experience executive function challenges (Schifano, 2025)</div></div>
+      <div class="stat-item"><div class="num">1 in 5</div><div class="lbl">ND employees experienced harassment or discrimination at work (CIPD, 2024)</div></div>
+    </div>
+
+    <div class="grid-2" style="margin-top:24px;">
+      <div class="card">
+        <h4>Why standard productivity tools fail</h4>
+        <p>Traditional systems assume consistent access to executive functions, the ability to generate motivation through willpower alone, linear time perception, and resistance to visual or sensory overload. For neurodivergent brains, none of these assumptions hold. The result is not a lack of effort -- it is a fundamental mismatch between the tool and the user's neurology.</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--accent);">
+        <h4>The interest-based nervous system</h4>
+        <p>Research on ADHD (Barkley, 2015; Brown, 2023) shows that motivation in the neurodivergent brain operates differently: tasks must be interesting, novel, challenging, or urgent to generate sufficient dopamine for activation. This is not a choice or a character flaw -- it is how the reward system is wired. Effective tools work with this system, not against it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVIDENCE-BASED STRATEGIES -->
+<section id="strategies">
+  <div class="container">
+    <p class="section-label">Evidence-based support</p>
+    <h2 class="section-title">Strategies that actually help -- grounded in research</h2>
+    <p class="sub" style="margin-top:8px;">These are not tips from lifestyle blogs. Each strategy is backed by peer-reviewed research or established clinical practice.</p>
+
+    <div class="grid-2" style="margin-top:28px;">
+      <div class="strategy-card">
+        <h4>Micro-step task breakdown</h4>
+        <p>Breaking tasks into absurdly small steps removes the activation energy barrier that prevents initiation. Instead of "clean the kitchen," the system presents "put one dish in the sink." Research identifies task breakdown as a primary successful coping strategy for executive dysfunction (Executive Function Toolkit, 2025; Tiimo, 2025).</p>
+        <div class="source">Evidence: behavioural activation therapy, executive function coaching literature.</div>
+      </div>
+      <div class="strategy-card">
+        <h4>Visual time awareness</h4>
+        <p>Time blindness -- the inability to sense the passage of time -- is well documented in ADHD. Visual timers that show time passing (red disc disappearing, progress bars) externalize time perception. The Cleveland Clinic explicitly recommends visible timers as a compensatory strategy for executive dysfunction.</p>
+        <div class="source">Evidence: clinical recommendations, Cleveland Clinic, ADHD management guidelines.</div>
+      </div>
+      <div class="strategy-card">
+        <h4>Body doubling</h4>
+        <p>The presence of another person -- physically or virtually -- can dramatically improve task initiation and sustained focus. Research on AI-enabled interventions shows that even minimal ambient cues of shared presence improve task engagement and reduce feelings of isolation (Positive Reset, 2026).</p>
+        <div class="source">Evidence: social facilitation theory, ADHD coaching research, 2026 studies.</div>
+      </div>
+      <div class="strategy-card">
+        <h4>Dopamine-friendly motivation design</h4>
+        <p>Rather than relying on willpower, effective ND tools build in immediate rewards, novelty, challenge, and urgency. Gamification that offers real-time feedback and visual progress taps into the interest-based nervous system described by Russell Barkley and Thomas Brown.</p>
+        <div class="source">Evidence: Barkley's ADHD motivation model, Brown's executive function model.</div>
+      </div>
+      <div class="strategy-card">
+        <h4>Flexible schedule and environment</h4>
+        <p>The SHRM 2024 Employee Benefits Survey found that flexible work is the 4th most important benefit for employees. For ND individuals, it is critical: the ability to adjust work hours to energy levels, choose quiet or low-stimulus spaces, and take movement breaks directly supports cognitive function. Research in sustainable HRM (Rollnik-Sadowska & Grabitska, 2024) identifies workplace flexibility as a key accommodation.</p>
+        <div class="source">Evidence: SHRM 2024, Sustainability journal 2024, Work Design Magazine 2025.</div>
+      </div>
+      <div class="strategy-card">
+        <h4>Written + verbal communication</h4>
+        <p>Providing written instructions alongside verbal briefings reduces cognitive load and supports working memory limitations. This simple accommodation, recommended by the Employer Assistance and Resource Network (EARN) and CIPD, benefits autistic employees, those with ADHD, and anyone processing complex information.</p>
+        <div class="source">Evidence: EARN neurodiversity toolkit, CIPD 2024, GHP News 2026.</div>
+      </div>
+    </div>
+
+    <div class="nd-highlight" style="margin-top:24px; background:linear-gradient(135deg, var(--accent) 0%, var(--purple-dim) 100%);">
+      <h3 style="color:#fff;">What NeuroEase will actually do</h3>
+      <p style="opacity:0.95;">Based on the above research, NeuroEase will implement: adaptive scheduling that adjusts to energy levels and focus patterns; task breakdown into micro-steps with a visible timer; optional body doubling via ambient co-working sessions; mood and energy tracking with AI pattern recognition; gentle reminders that respect focus states; and a low-stimulation interface designed for sensory sensitivity. Every feature is designed from the ground up to reduce cognitive load, not add to it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOR EVERYONE -->
+<section id="everyone" class="nt-section">
+  <div class="container">
+    <p class="section-label">For everyone</p>
+    <h2 class="section-title">What neurotypical people can learn from ND-friendly design</h2>
+    <p class="sub" style="margin-top:8px;">Inclusive design is not a zero-sum game. The same strategies that help neurodivergent individuals thrive also make work better for everyone. This is the principle of universal design.</p>
+
+    <div class="grid-2" style="margin-top:28px;">
+      <div class="card">
+        <h4>Clear communication helps everyone</h4>
+        <p>Written instructions, meeting agendas sent in advance, recap notes, and direct language reduce ambiguity for all team members -- not just those with ADHD or autism. Microsoft and Google have both published research showing that structured communication improves team performance across the board.</p>
+      </div>
+      <div class="card">
+        <h4>Flexible schedules increase productivity</h4>
+        <p>When companies offer flexible hours and remote options, employees across all neurotypes report higher satisfaction and output. The McKinsey diversity report series (ongoing since 2015) consistently shows that companies with inclusive policies outperform their peers financially. What starts as an accommodation for ND employees becomes a competitive advantage.</p>
+      </div>
+      <div class="card">
+        <h4>Quiet spaces reduce burnout</h4>
+        <p>Open-plan offices are a leading cause of lost productivity due to noise and distraction for all workers. Providing quiet zones, focus rooms, and noise-cancelling options benefits the entire workforce. Understood.org, a leading nonprofit, redesigned its own office around universal design principles and found that all employees -- ND and NT -- preferred the quieter, more flexible environment.</p>
+      </div>
+      <div class="card">
+        <h4>Task breakdown reduces procrastination</h4>
+        <p>Everyone procrastinates. The micro-step strategy that helps someone with executive dysfunction start a task is the same strategy that helps any professional break through a complex project. The principle -- reduce activation energy to near zero -- is universal. Parkinson's Law and behavioural psychology both support this approach for all cognitive types.</p>
+      </div>
+    </div>
+
+    <p class="sm" style="margin-top:20px; text-align:center;">Source: Work Design Magazine 2025, Understood.org universal design, McKinsey diversity matters series, SHRM 2024.</p>
+  </div>
+</section>
+
+<!-- FUNCTIONS & STRUCTURE -->
+<section id="functions" style="background:var(--bg);">
+  <div class="container">
+    <p class="section-label">Architecture</p>
+    <h2 class="section-title">How NeuroEase works -- functions and structure</h2>
+    <p class="sub" style="margin-top:8px;">The system is built around three layers that mirror how the brain actually processes tasks, energy, and time.</p>
+
+    <div class="grid-2" style="margin-top:28px;">
+      <div class="card" style="border-left:3px solid var(--accent);">
+        <h4>Layer 1: Adaptive Scheduler (Daily Support)</h4>
+        <p>Instead of rigid time-blocks, the scheduler uses energy-aware slots. The user sets a few anchor tasks per day (maximum 3-5 to prevent overwhelm), and the system distributes them based on the user's stated energy patterns, focus windows, and break needs. Tasks auto-reschedule if not completed, without guilt or streak punishment.</p>
+        <p style="margin-top:10px; font-size:0.85rem; color:var(--text-muted);">Functions: micro-step breakdown engine, gentle reminder system, energy-aware calendar, procrastination interrupt with body doubling prompt.</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--sky);">
+        <h4>Layer 2: Reflection Engine (Mood & Energy Tracking)</h4>
+        <p>A low-friction check-in (2 taps, no journaling required) captures mood, energy level, and sensory state. Over time, the AI pattern matcher identifies correlations: which tasks drain energy, what time of day focus peaks, which environments trigger overwhelm. The user never has to analyze this manually -- the system surfaces insights as gentle observations.</p>
+        <p style="margin-top:10px; font-size:0.85rem; color:var(--text-muted);">Functions: mood check-in, optional journal with media, pattern recognition, trend dashboard, trigger and habit identification.</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--gold);">
+        <h4>Layer 3: Motivation Scaffold (Gamification)</h4>
+        <p>Optional reward loops that work with the dopamine system, not against it. Completion of a micro-step triggers immediate visual feedback. Streaks are present but de-emphasized -- the system rewards showing up, not perfection. Users can choose their reward style: visual progress, collected achievements, or none at all.</p>
+        <p style="margin-top:10px; font-size:0.85rem; color:var(--text-muted);">Functions: micro-rewards, optional progress display, achievement log, energy-aware streak tracking, customizable motivation style.</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--warm);">
+        <h4>Cross-cutting: Sensory Interface</h4>
+        <p>The entire interface is designed for low sensory stimulation. Calm color palette (no bright or saturated hues), no animations unless user opts in, clear typography with high contrast, reduced visual clutter, and a focus mode that hides everything except the current task. All notifications are silent by default, with gentle haptic or visual cues as alternatives.</p>
+        <p style="margin-top:10px; font-size:0.85rem; color:var(--text-muted);">Functions: low-stim theme, focus mode, silent notifications, customizable sensory profile, reduced motion option.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:28px; padding:28px 32px; background:var(--bg-card); border-radius:var(--radius); border:1px solid var(--line);">
+      <h4>Data structure</h4>
+      <p style="font-size:0.92rem; color:var(--text-secondary); margin-top:8px;">User data is stored locally by default (privacy-first). Cloud sync is optional and end-to-end encrypted. The mood and task data model uses three core entities: <strong>Task</strong> (title, micro-steps, energy estimate, completion state, scheduled window), <strong>CheckIn</strong> (mood, energy level, sensory state, optional note, timestamp), and <strong>Insight</strong> (AI-generated pattern observation, confidence score, suggested action). Each entity is versioned and portable -- users can export all data as JSON at any time.</p>
+    </div>
+
+    <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap;">
+      <span style="padding:8px 18px; border-radius:100px; font-size:0.82rem; font-weight:500; background:var(--accent-light); color:var(--accent-dark);">Local-first storage</span>
+      <span style="padding:8px 18px; border-radius:100px; font-size:0.82rem; font-weight:500; background:var(--sky-light); color:var(--sky);">End-to-end encrypted sync</span>
+      <span style="padding:8px 18px; border-radius:100px; font-size:0.82rem; font-weight:500; background:var(--warm-light); color:var(--warm);">JSON data export</span>
+      <span style="padding:8px 18px; border-radius:100px; font-size:0.82rem; font-weight:500; background:var(--gold-light); color:var(--gold);">No cloud dependency</span>
+      <span style="padding:8px 18px; border-radius:100px; font-size:0.82rem; font-weight:500; background:var(--accent-light); color:var(--accent-dark);">Privacy-first design</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / CONTACT -->
+<section id="about">
+  <div class="container">
+    <p class="section-label">About</p>
+    <h2 class="section-title">The person behind NeuroEase</h2>
+    <div class="about-wrap">
+      <div class="about-card">
+        <h4>Hi, I am the creator of NeuroEase</h4>
+        <p>This project grew out of personal experience with executive dysfunction and the realization that most productivity tools are built by people who have never struggled to start a task they genuinely wanted to do. NeuroEase is my attempt to build something different: a toolset grounded in real research, designed with cognitive diversity in mind, and open to contribution from the community.</p>
+        <p style="margin-top:12px;">I believe that the best solutions come from the people who live with the problems. That is why this project is not closed. It is meant to grow with input from neurodivergent users, researchers, designers, and developers who want to make productivity more humane.</p>
+      </div>
+      <div class="about-card">
+        <h4>Get involved</h4>
+        <p>NeuroEase is in early development. If you want to contribute ideas, report issues, share your experience, or join the team, I would love to hear from you. The project needs voices from across the neurodiversity spectrum to get this right.</p>
+        <div class="contact-links">
+          <a href="mailto:neuroease@proton.me">Email me</a>
+          <a href="#">GitHub</a>
+          <a href="#">Join the discussion</a>
+          <a href="#">Suggest a feature</a>
+        </div>
+        <p style="margin-top:16px; font-size:0.85rem; color:var(--text-muted);">No corporate agenda. No data selling. Just a genuine attempt to build tools that work for the way your brain actually functions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section style="background:var(--bg-alt);">
+  <div class="container">
+    <p class="section-label">References</p>
+    <h2 class="section-title">Research and sources cited on this page</h2>
+    <ul class="ref-list">
+      <li>Kofler, M. J., Soto, E. F., Singh, L. J., et al. (2024). Executive function deficits in attention-deficit/hyperactivity disorder and autism spectrum disorder. Nature Reviews Psychology, 3, 701-719.</li>
+      <li>Rollnik-Sadowska, E., & Grabinska, V. (2024). Managing Neurodiversity in Workplaces: A Review and Future Research Agenda for Sustainable Human Resource Management. Sustainability, 16(15), 6594.</li>
+      <li>Barkley, R. A. (2015). Attention-Deficit Hyperactivity Disorder: A Handbook for Diagnosis and Treatment (4th ed.). Guilford Press.</li>
+      <li>Brown, T. E. (2023). ADHD and executive function: The real connection. ADDitude Magazine.</li>
+      <li>Cleveland Clinic. (2023). Executive Dysfunction: Symptoms, Causes, Treatment. my.clevelandclinic.org</li>
+      <li>CIPD / Uptimize. (2024). Neurodivergent Employees: Harassment and Discrimination at Work. Personnel Today.</li>
+      <li>Simply Psychology. (2026). Neurodivergence in the Workplace: Your Rights and Effective Accommodations.</li>
+      <li>Schifano, K. (2025). Executive Functioning in Autism: Strategies for Adults. Prosper Health.</li>
+      <li>SHRM. (2024). Employee Benefits Survey: Flexible Work. shrm.org</li>
+      <li>McKinsey & Company. (2023). Diversity Matters Even More: The Case for Holistic Impact.</li>
+      <li>Employer Assistance and Resource Network (EARN). Neurodiversity in the Workplace Tool Kit. askearn.org</li>
+      <li>Work Design Magazine. (2025). Championing Neurodivergent Employees Through Universal Design.</li>
+      <li>Understood.org. (2025). Universal Design in the Workplace.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <p>NeuroEase -- Productivity Without Overwhelm</p>
+  <p style="margin-top:4px;">Built with research. Designed for diversity. Open to everyone.</p>
+  <div style="display:flex; gap:8px; justify-content:center; margin-top:14px;">
+    <span style="width:12px; height:12px; border-radius:50%; background:var(--awareness-gold);" title="Neurodiversity gold"></span>
+    <span style="width:12px; height:12px; border-radius:50%; background:var(--awareness-orange);" title="ADHD awareness orange"></span>
+    <span style="width:12px; height:12px; border-radius:50%; background:var(--awareness-green);" title="Mental health green"></span>
+    <span style="width:12px; height:12px; border-radius:50%; background:var(--awareness-blue);" title="Dyslexia awareness blue"></span>
+    <span style="width:12px; height:12px; border-radius:50%; background:var(--purple);" title="Neurodiversity purple"></span>
+  </div>
+  <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:8px; font-size:0.7rem; color:var(--text-muted);">
+    <span>Gold: neurodiversity / autism</span>
+    <span>Orange: ADHD</span>
+    <span>Green: mental health</span>
+    <span>Blue: dyslexia</span>
+    <span>Purple: epilepsy / neurodiversity</span>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('load', () => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  });
+</script>
+
+</body>
+</html>
