@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="calm" data-size="a">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — NeuroEase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.about-intro{max-width:600px;margin-bottom:36px}
+.about-intro p{font-size:1rem;color:var(--text-secondary);line-height:1.6}
+
+.tab-bar{display:flex;gap:4px;margin-bottom:0;border-bottom:1px solid var(--hairline);padding:0}
+.tab-btn{
+  padding:10px 18px;border:none;background:transparent;
+  font-family:var(--font-body);font-size:0.88rem;font-weight:500;
+  color:var(--text-secondary);cursor:pointer;
+  border-bottom:2px solid transparent;margin-bottom:-1px;
+  transition:color .2s,border-color .2s
+}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+
+.tab-panel{display:none;padding:32px 0 0;animation:tabIn .35s ease-out}
+.tab-panel.active{display:block}
+@keyframes tabIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.value-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:20px}
+.value-card{
+  background:var(--surface);border-radius:var(--radius);border:1px solid var(--hairline);
+  padding:24px;transition:transform .2s,box-shadow .2s;box-shadow:var(--shadow-sm)
+}
+.value-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.value-card h3{font-size:0.95rem;margin-bottom:4px}
+.value-card p{font-size:0.84rem;color:var(--text-secondary);line-height:1.5}
+
+.contact-split{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.contact-card{
+  background:var(--surface);border-radius:var(--radius);border:1px solid var(--hairline);
+  padding:24px;box-shadow:var(--shadow-sm);transition:transform .2s,box-shadow .2s
+}
+.contact-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.contact-card h3{font-size:0.95rem;margin-bottom:4px}
+.contact-card>p{font-size:0.84rem;color:var(--text-secondary);margin-bottom:14px;line-height:1.5}
+
+.fg{margin-bottom:12px}
+.fg label{display:block;font-size:0.78rem;font-weight:600;color:var(--text);margin-bottom:4px}
+.fg input,.fg textarea{
+  width:100%;padding:9px 12px;border-radius:var(--radius-sm);
+  border:1px solid var(--hairline);background:var(--bg);
+  font-family:var(--font-body);font-size:0.85rem;color:var(--text);
+  transition:border-color .15s,box-shadow .15s
+}
+.fg input:focus,.fg textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 2px rgba(107,140,124,0.15)}
+.fg textarea{resize:vertical;min-height:70px}
+.fsub{
+  padding:8px 18px;border-radius:100px;border:none;
+  background:var(--accent);color:#fff;cursor:pointer;
+  font-family:var(--font-display);font-weight:600;font-size:0.82rem;
+  transition:background .15s,transform .15s
+}
+.fsub:hover{background:var(--accent-hover);transform:translateY(-1px)}
+.fnote{font-size:0.76rem;color:var(--text-muted);margin-top:6px;line-height:1.4}
+.opt-out{font-size:0.76rem;color:var(--text-muted);font-style:italic;margin-top:4px}
+
+.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.team-card{
+  background:var(--surface);border-radius:var(--radius);border:1px solid var(--hairline);
+  padding:22px;box-shadow:var(--shadow-sm);transition:transform .2s,box-shadow .2s
+}
+.team-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.team-card h3{font-size:0.93rem;margin-bottom:2px}
+.team-card p{font-size:0.83rem;color:var(--text-secondary);line-height:1.5}
+.team-cta{margin-top:24px;padding:24px;background:var(--surface);border-radius:var(--radius);border:1px solid var(--hairline);text-align:center}
+.team-cta p{font-size:0.9rem;color:var(--text-secondary);margin-bottom:12px;line-height:1.5}
+
+@media(max-width:700px){
+  .value-grid{grid-template-columns:1fr}
+  .contact-split{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr}
+  .tab-btn{padding:8px 12px;font-size:0.82rem}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">Neuro<span>Ease</span></div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="understand.html">Understand</a>
+      <a href="features.html">Features</a>
+      <a href="strategies.html">Strategies</a>
+      <a href="for-everyone.html">For Everyone</a>
+      <a href="about.html" class="active">About</a>
+    </nav>
+    <div class="controls">
+      <button class="ctrl-btn size-btn" data-size="sm" title="Smaller text">A-</button>
+      <button class="ctrl-btn size-btn active" data-size="a" title="Default text">A</button>
+      <button class="ctrl-btn size-btn" data-size="lg" title="Larger text">A+</button>
+      <button class="ctrl-btn" id="themeToggle" title="Switch theme">&#9790;</button>
+      <button class="ctrl-btn" id="dyslexiaToggle" title="Dyslexia-friendly font">Dys</button>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="container">
+    <p class="sm" style="margin-bottom:6px;">Get to know us</p>
+    <h1>Built in the open, for everyone.</h1>
+
+    <div class="tab-bar" role="tablist">
+      <button class="tab-btn active" role="tab" data-tab="about" aria-selected="true">About</button>
+      <button class="tab-btn" role="tab" data-tab="contact" aria-selected="false">Contact</button>
+      <button class="tab-btn" role="tab" data-tab="feedback" aria-selected="false">Feedback</button>
+      <button class="tab-btn" role="tab" data-tab="team" aria-selected="false">Team</button>
+    </div>
+
+    <div class="tab-panel active" id="tab-about" role="tabpanel">
+      <div class="about-intro">
+        <p>NeuroEase is a productivity tool designed by and for neurodivergent people. We started because every to-do list, planner, and focus app assumed a brain that could plan, initiate, and sustain attention on command. That assumption is the problem — we're here to fix it.</p>
+      </div>
+      <div class="value-grid">
+        <div class="value-card reveal">
+          <h3>Community-driven</h3>
+          <p>Every feature starts with a real need from the ND community. We build with input, not assumptions.</p>
+        </div>
+        <div class="value-card reveal">
+          <h3>Open source</h3>
+          <p>The code is public. Contributions, audits, and forks are welcome — transparency builds trust.</p>
+        </div>
+        <div class="value-card reveal">
+          <h3>Neurodivergent-first</h3>
+          <p>We design for ADHD, autism, dyslexia, and related cognitive variations first. Everyone else benefits too.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-contact" role="tabpanel">
+      <div class="contact-split">
+        <div class="contact-card reveal">
+          <h3>Say hello</h3>
+          <p>For general questions, partnerships, or press inquiries.</p>
+          <form onsubmit="event.preventDefault(); alert('Thanks for reaching out. We reply within 5 business days.');">
+            <div class="fg"><label for="name">Name</label><input type="text" id="name" placeholder="e.g. Alex"></div>
+            <div class="fg"><label for="email">Email</label><input type="email" id="email" placeholder="you@example.com"></div>
+            <div class="fg"><label for="msg">Message</label><textarea id="msg" placeholder="What would you like to say?"></textarea></div>
+            <button type="submit" class="fsub">Send message</button>
+          </form>
+        </div>
+        <div class="contact-card reveal">
+          <h3>Anonymous contact</h3>
+          <p>No name, no email — just send us your thoughts privately.</p>
+          <form onsubmit="event.preventDefault(); alert('Anonymous message received.');">
+            <div class="fg"><label for="anon-msg">Your message</label><textarea id="anon-msg" placeholder="Write anything, completely off the record."></textarea></div>
+            <button type="submit" class="fsub">Send anonymously</button>
+            <p class="opt-out">No data collected. No account needed.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-feedback" role="tabpanel">
+      <div class="contact-split">
+        <div class="contact-card reveal">
+          <h3>Suggest a feature</h3>
+          <p>Something missing? Something broken? Tell us what would make NeuroEase work better for you.</p>
+          <form onsubmit="event.preventDefault(); alert('Suggestion received. We review everything within 2 weeks.');">
+            <div class="fg"><label for="suggestion">Your suggestion</label><textarea id="suggestion" placeholder="Describe what you would change or add — the more detail the better."></textarea></div>
+            <div class="fg"><label for="sug-email">Email (optional)</label><input type="email" id="sug-email" placeholder="Only if you want a reply"></div>
+            <button type="submit" class="fsub">Submit suggestion</button>
+            <p class="fnote">We review every suggestion within 2 weeks.</p>
+          </form>
+        </div>
+        <div class="contact-card reveal">
+          <h3>Anonymous feedback</h3>
+          <p>No account, no login, no data collection. Just honest feedback about anything.</p>
+          <form onsubmit="event.preventDefault(); alert('Feedback received. Thank you.');">
+            <div class="fg"><label for="fb">Your feedback</label><textarea id="fb" placeholder="What works? What does not? What confuses you?"></textarea></div>
+            <button type="submit" class="fsub">Send feedback</button>
+            <p class="opt-out">Completely anonymous. No data collected.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-team" role="tabpanel">
+      <p class="sub" style="margin-bottom:20px;">NeuroEase is built by a distributed team of neurodivergent people who believe productivity tools should adapt to brains, not the other way around.</p>
+      <div class="team-grid">
+        <div class="team-card reveal">
+          <h3>Developers</h3>
+          <p>Frontend, backend, and accessibility engineers who build for cognitive diversity from the ground up.</p>
+        </div>
+        <div class="team-card reveal">
+          <h3>Designers</h3>
+          <p>UX and visual designers who prioritise clarity, calm, and customisability over trends.</p>
+        </div>
+        <div class="team-card reveal">
+          <h3>Researchers</h3>
+          <p>Community-backed research into executive dysfunction, sensory processing, and neurodivergent user needs.</p>
+        </div>
+        <div class="team-card reveal">
+          <h3>Writers</h3>
+          <p>Plain-language content that respects your attention and never pathologises neurodivergence.</p>
+        </div>
+      </div>
+      <div class="team-cta reveal">
+        <p>Want to help build better tools for your own community? We are looking for neurodivergent contributors who care about accessibility, research, and design.</p>
+        <a href="mailto:hello@neuroease.dev" class="btn btn-primary">Apply now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><p>NeuroEase — Productivity Without Overwhelm</p></footer>
+
+<div class="scroll-line" aria-hidden="true"><div class="scroll-line-fill" id="scrollFill"></div></div>
+
+<script>
+(function(){
+  const html=document.documentElement;const key='neuroease';
+  function load(){try{const d=JSON.parse(localStorage.getItem(key));if(d){if(d.theme)html.setAttribute('data-theme',d.theme);if(d.size)html.setAttribute('data-size',d.size);if(d.dyslexia)html.setAttribute('data-dyslexia',d.dyslexia);}}catch(e){}}
+  function save(){try{localStorage.setItem(key,JSON.stringify({theme:html.getAttribute('data-theme'),size:html.getAttribute('data-size'),dyslexia:html.getAttribute('data-dyslexia')}));}catch(e){}}
+  load();
+
+  document.querySelectorAll('.size-btn').forEach(b=>{b.addEventListener('click',()=>{document.querySelectorAll('.size-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');html.setAttribute('data-size',b.dataset.size);save();});});
+
+  const themeBtn=document.getElementById('themeToggle');
+  themeBtn.addEventListener('click',()=>{const cur=html.getAttribute('data-theme');const next=cur==='calm'?'dark':'calm';html.setAttribute('data-theme',next);themeBtn.innerHTML=next==='calm'?'&#9790;':'&#9788;';save();});
+  if(html.getAttribute('data-theme')==='dark')themeBtn.innerHTML='&#9788;';
+
+  const dysBtn=document.getElementById('dyslexiaToggle');
+  dysBtn.addEventListener('click',()=>{const cur=html.getAttribute('data-dyslexia');if(cur==='on'){html.removeAttribute('data-dyslexia');dysBtn.textContent='Dys';dysBtn.classList.remove('active')}else{html.setAttribute('data-dyslexia','on');dysBtn.textContent='Dys';dysBtn.classList.add('active')}save();});
+  if(html.getAttribute('data-dyslexia')==='on')dysBtn.classList.add('active');
+
+  const sz=html.getAttribute('data-size');if(sz){document.querySelectorAll('.size-btn').forEach(b=>b.classList.toggle('active',b.dataset.size===sz));}
+
+  const tabs=document.querySelectorAll('.tab-btn');
+  const panels={about:document.getElementById('tab-about'),contact:document.getElementById('tab-contact'),feedback:document.getElementById('tab-feedback'),team:document.getElementById('tab-team')};
+  tabs.forEach(t=>{t.addEventListener('click',()=>{tabs.forEach(x=>{x.classList.remove('active');x.setAttribute('aria-selected','false')});t.classList.add('active');t.setAttribute('aria-selected','true');Object.values(panels).forEach(p=>p.classList.remove('active'));const panel=panels[t.dataset.tab];if(panel){panel.classList.add('active');panel.style.animation='none';requestAnimationFrame(()=>{panel.style.animation=''});}});});
+
+  window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-window.innerHeight;if(h>0)document.getElementById('scrollFill').style.height=(window.scrollY/h*100)+'%';});
+})();
+</script>
+<script src="neuroease.js"></script>
+</body>
+</html>

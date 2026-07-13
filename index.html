@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="calm" data-size="a">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuroEase — Productivity Without Overwhelm</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.hero{min-height:calc(100vh - 52px);display:flex;align-items:center;padding:48px 24px}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;max-width:1000px;margin:0 auto;width:100%}
+.hero h1{margin-bottom:12px;max-width:480px}
+.hero p{font-size:1rem;margin-bottom:24px;color:var(--text-secondary);max-width:440px}
+.hero-actions{display:flex;gap:10px}
+.hero-illus{display:flex;align-items:center;justify-content:center}
+.hero-illus svg{width:100%;max-width:280px;opacity:0.65}
+
+.stats-preview{background:var(--surface);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)}
+.stats-preview .container{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.stats-preview .stat{text-align:center}
+.stats-preview .stat .big{font-family:var(--font-display);font-weight:700;font-size:2rem;color:var(--accent);line-height:1}
+.stats-preview .stat p{font-size:0.83rem;color:var(--text-secondary);margin-top:6px;line-height:1.5}
+
+.preview-head{font-size:0.78rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:16px}
+.preview-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.preview-card{
+  background:var(--surface);border-radius:var(--radius);
+  border:1px solid var(--hairline);padding:18px;
+  border-left:3px solid var(--accent);transition:transform .2s,box-shadow .2s
+}
+.preview-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.preview-card h3{font-size:0.9rem;margin-bottom:2px}
+.preview-card p{font-size:0.82rem;color:var(--text-secondary);line-height:1.5}
+.preview-card.s{display:flex;gap:10px;border-left-color:var(--accent-2)}
+.preview-card.s .num{font-family:var(--font-display);font-weight:700;font-size:1rem;color:var(--accent-2);flex-shrink:0;width:16px;line-height:1.3}
+.preview-card.s h3{font-size:0.88rem;margin-bottom:2px}
+.preview-card.s p{font-size:0.8rem;color:var(--text-secondary)}
+.preview-card.s .tie{font-size:0.74rem;color:var(--accent);margin-top:4px}
+.closing-block{padding:40px 0;text-align:center}
+.closing-block .btn{margin-top:16px}
+
+.hero-illus svg{animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+@media(max-width:700px){
+  .hero-inner{grid-template-columns:1fr}
+  .hero-illus{display:none}
+  .hero{padding:32px 20px}
+  .stats-preview .container{grid-template-columns:1fr}
+  .preview-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">Neuro<span>Ease</span></div>
+    <nav class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="understand.html">Understand</a>
+      <a href="features.html">Features</a>
+      <a href="strategies.html">Strategies</a>
+      <a href="for-everyone.html">For Everyone</a>
+      <a href="about.html">About</a>
+    </nav>
+    <div class="controls">
+      <button class="ctrl-btn size-btn" data-size="sm" title="Smaller text">A-</button>
+      <button class="ctrl-btn size-btn active" data-size="a" title="Default text">A</button>
+      <button class="ctrl-btn size-btn" data-size="lg" title="Larger text">A+</button>
+      <button class="ctrl-btn" id="themeToggle" title="Switch theme">&#9790;</button>
+      <button class="ctrl-btn" id="dyslexiaToggle" title="Dyslexia-friendly font">Dys</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <p class="sm" style="margin-bottom:6px;">A productivity tool that adapts to your brain</p>
+      <h1>We built this because to-do lists were breaking our brains.</h1>
+      <p>Standard productivity tools assume a brain that can plan, start, and focus on command. For neurodivergent people, that assumption is the problem. NeuroEase is a different approach, backed by research and built with the community.</p>
+      <div class="hero-actions">
+        <a href="features.html" class="btn btn-primary">See how it works</a>
+        <a href="understand.html" class="btn btn-outline">What is neurodivergence?</a>
+      </div>
+    </div>
+    <div class="hero-illus">
+      <svg viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="40" cy="35" r="5" fill="var(--accent)" opacity="0.35"/>
+        <circle cx="160" cy="25" r="4" fill="var(--accent)" opacity="0.25"/>
+        <circle cx="100" cy="70" r="6" fill="var(--accent-2)" opacity="0.4"/>
+        <circle cx="50" cy="120" r="4" fill="var(--accent)" opacity="0.3"/>
+        <circle cx="150" cy="125" r="5" fill="var(--accent-2)" opacity="0.25"/>
+        <path d="M40 35 Q70 30 100 70 Q130 105 160 25" stroke="var(--accent)" stroke-width="1.2" fill="none" opacity="0.4"/>
+        <path d="M40 35 Q60 60 50 120 Q80 90 100 70 Q120 50 150 125" stroke="var(--accent-2)" stroke-width="1.2" fill="none" opacity="0.3"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="stats-preview">
+  <div class="container">
+    <div class="stat">
+      <div class="big">15-20%</div>
+      <p>Of people are neurodivergent. The default design does not serve a fifth of its users.</p>
+    </div>
+    <div class="stat">
+      <div class="big">30%</div>
+      <p>Neurodiverse teams can be more productive with the right tools and environment.</p>
+    </div>
+    <div class="stat">
+      <div class="big">36%</div>
+      <p>Higher retention in companies with inclusive neurodiversity programmes.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <p class="preview-head">Key features</p>
+    <div class="preview-grid">
+      <div class="preview-card reveal">
+        <h3>Energy Map</h3>
+        <p>Tracks capacity across social, sensory, cognitive, and physical domains separately — not one flat score.</p>
+      </div>
+      <div class="preview-card reveal">
+        <h3>Task Breaker</h3>
+        <p>Breaks any task into micro-steps with a shrink button for the smallest honest version.</p>
+      </div>
+      <div class="preview-card reveal">
+        <h3>Spiral Check</h3>
+        <p>For moments of rejection-sensitive dysphoria: separates fact from what the brain says it means.</p>
+      </div>
+      <div class="preview-card reveal">
+        <h3>Masking Tracker</h3>
+        <p>Log when you mask and how draining it was. See which environments cost the most.</p>
+      </div>
+    </div>
+    <div class="closing-block" style="text-align:left;margin-top:12px;">
+      <a href="features.html" class="btn btn-outline">See all 8 features</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <p class="preview-head">Strategies that work today</p>
+    <div class="preview-grid">
+      <div class="preview-card s reveal">
+        <div class="num">1</div>
+        <div>
+          <h3>Break tasks into tiny steps</h3>
+          <p>Start with "put one dish in the sink." Absurdly small steps remove the barrier to starting.</p>
+          <div class="tie"><a href="features.html">Task Breaker</a></div>
+        </div>
+      </div>
+      <div class="preview-card s reveal">
+        <div class="num">2</div>
+        <div>
+          <h3>Make time visible</h3>
+          <p>Use a visual timer so you don't have to track it internally.</p>
+          <div class="tie"><a href="features.html">Focus Guard</a></div>
+        </div>
+      </div>
+      <div class="preview-card s reveal">
+        <div class="num">3</div>
+        <div>
+          <h3>Schedule by energy, not clock time</h3>
+          <p>Assign tasks to high and low energy states instead of fighting natural rhythms.</p>
+          <div class="tie"><a href="features.html">Energy Map</a></div>
+        </div>
+      </div>
+      <div class="preview-card s reveal">
+        <div class="num">4</div>
+        <div>
+          <h3>Lower your sensory input</h3>
+          <p>Noise-cancelling headphones, dimmed lights, and decluttering reduce cognitive load.</p>
+          <div class="tie"><a href="features.html">State Card</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="closing-block reveal" style="border-top:1px solid var(--hairline);">
+  <div class="container">
+    <h2>Not just an app. A different assumption.</h2>
+    <p class="sub" style="margin:10px auto 0;max-width:500px;">NeuroEase starts from the premise that you are not broken. The tools were. Explore the full project to learn more.</p>
+    <a href="for-everyone.html" class="btn btn-primary">For everyone</a>
+  </div>
+</section>
+
+<footer><p>NeuroEase — Productivity Without Overwhelm</p></footer>
+
+<div class="scroll-line" aria-hidden="true"><div class="scroll-line-fill" id="scrollFill"></div></div>
+
+<script>
+(function(){
+  const html=document.documentElement;const key='neuroease';
+  function load(){try{const d=JSON.parse(localStorage.getItem(key));if(d){if(d.theme)html.setAttribute('data-theme',d.theme);if(d.size)html.setAttribute('data-size',d.size);if(d.dyslexia)html.setAttribute('data-dyslexia',d.dyslexia);}}catch(e){}}
+  function save(){try{localStorage.setItem(key,JSON.stringify({theme:html.getAttribute('data-theme'),size:html.getAttribute('data-size'),dyslexia:html.getAttribute('data-dyslexia')}));}catch(e){}}
+  load();
+  document.querySelectorAll('.size-btn').forEach(b=>{b.addEventListener('click',()=>{document.querySelectorAll('.size-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');html.setAttribute('data-size',b.dataset.size);save();});});
+  const themeBtn=document.getElementById('themeToggle');themeBtn.addEventListener('click',()=>{const cur=html.getAttribute('data-theme');const next=cur==='calm'?'dark':'calm';html.setAttribute('data-theme',next);themeBtn.innerHTML=next==='calm'?'&#9790;':'&#9788;';save();});if(html.getAttribute('data-theme')==='dark')themeBtn.innerHTML='&#9788;';
+  const dysBtn=document.getElementById('dyslexiaToggle');dysBtn.addEventListener('click',()=>{const cur=html.getAttribute('data-dyslexia');if(cur==='on'){html.removeAttribute('data-dyslexia');dysBtn.textContent='Dys';dysBtn.classList.remove('active')}else{html.setAttribute('data-dyslexia','on');dysBtn.textContent='Dys';dysBtn.classList.add('active')}save();});if(html.getAttribute('data-dyslexia')==='on')dysBtn.classList.add('active');
+  const sz=html.getAttribute('data-size');if(sz){document.querySelectorAll('.size-btn').forEach(b=>b.classList.toggle('active',b.dataset.size===sz));}
+  window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-window.innerHeight;if(h>0)document.getElementById('scrollFill').style.height=(window.scrollY/h*100)+'%';});
+})();
+</script>
+<script src="neuroease.js"></script>
+</body>
+</html>

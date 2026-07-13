@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="calm" data-size="a">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Understand — NeuroEase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.container{max-width:700px}
+.accordion{margin-top:32px;display:flex;flex-direction:column;gap:10px}
+.accordion-item{background:var(--surface);border-radius:var(--radius);border:1px solid var(--hairline);overflow:hidden;transition:transform .2s,box-shadow .2s}
+.accordion-item:hover{box-shadow:var(--shadow-sm)}
+.accordion-item.open{box-shadow:var(--shadow-md)}
+.accordion-trigger{
+  width:100%;display:flex;align-items:center;justify-content:space-between;
+  padding:16px 20px;border:none;background:transparent;
+  font-family:var(--font-display);font-weight:600;font-size:0.95rem;
+  color:var(--text);cursor:pointer;text-align:left;gap:10px
+}
+.accordion-trigger:hover{background:var(--bg)}
+.accordion-trigger .icon{font-size:1.1rem;line-height:1;color:var(--accent);transition:transform .2s}
+.accordion-item.open .accordion-trigger .icon{transform:rotate(45deg)}
+.accordion-panel{padding:0 20px 16px;display:none}
+.accordion-item.open .accordion-panel{display:block;animation:tabIn .3s ease-out}
+@keyframes tabIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.accordion-panel ul{padding-left:18px}
+.accordion-panel li{font-size:0.9rem;color:var(--text-secondary);margin-bottom:4px}
+.awareness{margin-top:24px;padding:18px 22px;background:var(--surface);border-radius:var(--radius);border:1px solid var(--hairline);font-size:0.85rem;color:var(--text-secondary);line-height:1.55}
+.awareness strong{color:var(--text)}
+.awareness-dots{display:flex;gap:8px;margin-top:10px}
+.awareness-dots span{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">Neuro<span>Ease</span></div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="understand.html" class="active">Understand</a>
+      <a href="features.html">Features</a>
+      <a href="strategies.html">Strategies</a>
+      <a href="for-everyone.html">For Everyone</a>
+      <a href="about.html">About</a>
+    </nav>
+    <div class="controls">
+      <button class="ctrl-btn size-btn" data-size="sm" title="Smaller text">A-</button>
+      <button class="ctrl-btn size-btn active" data-size="a" title="Default text">A</button>
+      <button class="ctrl-btn size-btn" data-size="lg" title="Larger text">A+</button>
+      <button class="ctrl-btn" id="themeToggle" title="Switch theme">&#9790;</button>
+      <button class="ctrl-btn" id="dyslexiaToggle" title="Dyslexia-friendly font">Dys</button>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="container">
+    <p class="sm" style="margin-bottom:6px;">Understanding neurodivergence</p>
+    <h1>Neurodivergence is variation, not deficit.</h1>
+    <p class="sub" style="margin-top:8px;">An estimated 15-20% of people process information, attention, and emotion differently. Here is what that means in plain terms.</p>
+
+    <div class="accordion">
+      <div class="accordion-item open reveal">
+        <button class="accordion-trigger" aria-expanded="true">
+          <span>What neurodivergent means</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="accordion-panel">
+          <ul>
+            <li>Neurodivergence describes natural variations in how the brain processes information, manages attention, regulates emotion, and interacts with the world.</li>
+            <li>Includes ADHD, autism, dyslexia, dyspraxia, Tourette syndrome, and related cognitive differences.</li>
+            <li>The difficulty comes from mismatch between a person and their environment, not from something broken inside the person.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion-item reveal">
+        <button class="accordion-trigger" aria-expanded="false">
+          <span>ADHD and executive dysfunction</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="accordion-panel">
+          <ul>
+            <li>Executive functions are the brain's management system: planning, task initiation, time management, working memory, emotional regulation.</li>
+            <li>Executive dysfunction means knowing you need to start a task but being unable to make your body begin. It is not laziness — it is a neurological barrier.</li>
+            <li>Time blindness, emotional flooding after rejection (RSD), and overwhelm from multi-step instructions are common experiences.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion-item reveal">
+        <button class="accordion-trigger" aria-expanded="false">
+          <span>Autism and sensory processing</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="accordion-panel">
+          <ul>
+            <li>Many autistic people have heightened or reduced sensitivity to light, sound, touch, smell, or internal body signals (interoception).</li>
+            <li>Alexithymia — difficulty identifying or naming emotions — makes standard mood trackers that ask "how do you feel?" inaccessible.</li>
+            <li>Monotropism: intense, sustained focus on one interest. Rigid timers interrupt this instead of supporting it.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion-item reveal">
+        <button class="accordion-trigger" aria-expanded="false">
+          <span>Why this isn't about fixing anyone</span>
+          <span class="icon">+</span>
+        </button>
+        <div class="accordion-panel">
+          <ul>
+            <li>NeuroEase takes the neurodiversity stance: neurological variation is a normal and valuable part of human diversity.</li>
+            <li>The goal is not to make neurodivergent people function like neurotypical people. The goal is to build tools and environments that accommodate different cognitive styles.</li>
+            <li>Companies that embrace neurodiversity consistently outperform their peers on innovation, retention, and productivity.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="awareness">
+      <strong>About symbols.</strong> The rainbow infinity loop was created by the autistic community in 2005 and represents neurodivergence broadly. Gold (Au, the chemical symbol for gold) represents autism acceptance. Orange represents ADHD awareness. Green represents mental health awareness. This project uses none as default UI colors — identity markers should be chosen by the user, never applied by the product.
+      <div class="awareness-dots">
+        <span style="background:#D4A84B;" title="Gold: neurodiversity"></span>
+        <span style="background:#D4825A;" title="Orange: ADHD"></span>
+        <span style="background:#5A9B6E;" title="Green: mental health"></span>
+        <span style="background:#8B7BB5;" title="Purple: epilepsy / neurodiversity"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><p>NeuroEase — Productivity Without Overwhelm</p></footer>
+
+<div class="scroll-line" aria-hidden="true"><div class="scroll-line-fill" id="scrollFill"></div></div>
+
+<script>
+(function(){
+  const html=document.documentElement;const key='neuroease';
+  function load(){try{const d=JSON.parse(localStorage.getItem(key));if(d){if(d.theme)html.setAttribute('data-theme',d.theme);if(d.size)html.setAttribute('data-size',d.size);if(d.dyslexia)html.setAttribute('data-dyslexia',d.dyslexia);}}catch(e){}}
+  function save(){try{localStorage.setItem(key,JSON.stringify({theme:html.getAttribute('data-theme'),size:html.getAttribute('data-size'),dyslexia:html.getAttribute('data-dyslexia')}));}catch(e){}}
+  load();
+  document.querySelectorAll('.size-btn').forEach(b=>{b.addEventListener('click',()=>{document.querySelectorAll('.size-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');html.setAttribute('data-size',b.dataset.size);save();});});
+  const themeBtn=document.getElementById('themeToggle');themeBtn.addEventListener('click',()=>{const cur=html.getAttribute('data-theme');const next=cur==='calm'?'dark':'calm';html.setAttribute('data-theme',next);themeBtn.innerHTML=next==='calm'?'&#9790;':'&#9788;';save();});if(html.getAttribute('data-theme')==='dark')themeBtn.innerHTML='&#9788;';
+  const dysBtn=document.getElementById('dyslexiaToggle');dysBtn.addEventListener('click',()=>{const cur=html.getAttribute('data-dyslexia');if(cur==='on'){html.removeAttribute('data-dyslexia');dysBtn.textContent='Dys';dysBtn.classList.remove('active')}else{html.setAttribute('data-dyslexia','on');dysBtn.textContent='Dys';dysBtn.classList.add('active')}save();});if(html.getAttribute('data-dyslexia')==='on')dysBtn.classList.add('active');
+  const sz=html.getAttribute('data-size');if(sz){document.querySelectorAll('.size-btn').forEach(b=>b.classList.toggle('active',b.dataset.size===sz));}
+  window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-window.innerHeight;if(h>0)document.getElementById('scrollFill').style.height=(window.scrollY/h*100)+'%';});
+  document.querySelectorAll('.accordion-trigger').forEach(t=>{t.addEventListener('click',()=>{const i=t.closest('.accordion-item');i.classList.toggle('open');t.setAttribute('aria-expanded',i.classList.contains('open'));});});
+})();
+</script>
+<script src="neuroease.js"></script>
+</body>
+</html>

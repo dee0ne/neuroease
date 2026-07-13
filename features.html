@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="calm" data-size="a">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Features — NeuroEase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.features-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px}
+.feature-card{
+  background:var(--surface);border-radius:var(--radius);
+  border:1px solid var(--hairline);padding:20px;
+  border-left:3px solid var(--accent);
+  transition:transform .2s,box-shadow .2s
+}
+.feature-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.feature-card h3{font-size:0.95rem;margin-bottom:3px}
+.feature-card .what{font-size:0.85rem;color:var(--text-secondary);margin-bottom:4px;line-height:1.5}
+.feature-card .why{font-size:0.8rem;color:var(--accent-2);font-style:italic}
+@media(max-width:700px){.features-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">Neuro<span>Ease</span></div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="understand.html">Understand</a>
+      <a href="features.html" class="active">Features</a>
+      <a href="strategies.html">Strategies</a>
+      <a href="for-everyone.html">For Everyone</a>
+      <a href="about.html">About</a>
+    </nav>
+    <div class="controls">
+      <button class="ctrl-btn size-btn" data-size="sm" title="Smaller text">A-</button>
+      <button class="ctrl-btn size-btn active" data-size="a" title="Default text">A</button>
+      <button class="ctrl-btn size-btn" data-size="lg" title="Larger text">A+</button>
+      <button class="ctrl-btn" id="themeToggle" title="Switch theme">&#9790;</button>
+      <button class="ctrl-btn" id="dyslexiaToggle" title="Dyslexia-friendly font">Dys</button>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="container">
+    <p class="sm" style="margin-bottom:6px;">What makes NeuroEase different</p>
+    <h1>Not just another mood tracker.</h1>
+    <p class="sub" style="margin-top:8px;">Most wellbeing apps assume you can notice, name, and report an emotion. For many neurodivergent people, that assumption is the barrier. Here is what we do instead.</p>
+
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <h3>Daily Check-in</h3>
+        <p class="what">Asks what your body is doing — tight chest, racing thoughts, heavy limbs — then suggests the feeling for you, instead of demanding you name it yourself.</p>
+        <p class="why">Built for alexithymia, not against it.</p>
+      </div>
+      <div class="feature-card reveal">
+        <h3>Energy Map</h3>
+        <p class="what">Tracks your capacity across social, sensory, cognitive, and physical domains separately — not one flat mood score.</p>
+        <p class="why">Makes adaptive scheduling actually adaptive.</p>
+      </div>
+      <div class="feature-card reveal">
+        <h3>Task Breaker</h3>
+        <p class="what">Breaks any task into micro-steps, plus a shrink button for the smallest honest version when even that feels like too much.</p>
+        <p class="why">Removes the activation energy barrier to starting.</p>
+      </div>
+      <div class="feature-card reveal">
+        <h3>Focus Guard</h3>
+        <p class="what">Detects when you are in hyperfocus and protects it — fewer interruptions, gentler wind-down warnings, no arbitrary timer cutting you off.</p>
+        <p class="why">Built for monotropism, not against it.</p>
+      </div>
+      <div class="feature-card reveal">
+        <h3>Spiral Check</h3>
+        <p class="what">A fast tool for moments of rejection-sensitive dysphoria: separates "what happened" from "what my brain is telling me it means."</p>
+        <p class="why">No other mood app addresses RSD by name.</p>
+      </div>
+      <div class="feature-card reveal">
+        <h3>Patterns</h3>
+        <p class="what">Finds correlations automatically — "your energy drops on days logged as loud or bright" — surfaced in plain language, no journaling required.</p>
+        <p class="why">Pattern recognition without forcing writing.</p>
+      </div>
+      <div class="feature-card reveal">
+        <h3>State Card</h3>
+        <p class="what">One tap generates a summary you can share: "today I have low capacity for talking, high capacity for focused work." No diagnosis disclosure needed.</p>
+        <p class="why">A communication tool, not just a private log.</p>
+      </div>
+      <div class="feature-card reveal">
+        <h3>Masking Tracker</h3>
+        <p class="what">Optionally log when you are masking and how draining it was. Over time, see which environments cost the most — visually and clearly.</p>
+        <p class="why">Turns an invisible burden into something visible and plannable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><p>NeuroEase — Productivity Without Overwhelm</p></footer>
+
+<div class="scroll-line" aria-hidden="true"><div class="scroll-line-fill" id="scrollFill"></div></div>
+
+<script>
+(function(){
+  const html=document.documentElement;const key='neuroease';
+  function load(){try{const d=JSON.parse(localStorage.getItem(key));if(d){if(d.theme)html.setAttribute('data-theme',d.theme);if(d.size)html.setAttribute('data-size',d.size);if(d.dyslexia)html.setAttribute('data-dyslexia',d.dyslexia);}}catch(e){}}
+  function save(){try{localStorage.setItem(key,JSON.stringify({theme:html.getAttribute('data-theme'),size:html.getAttribute('data-size'),dyslexia:html.getAttribute('data-dyslexia')}));}catch(e){}}
+  load();
+  document.querySelectorAll('.size-btn').forEach(b=>{b.addEventListener('click',()=>{document.querySelectorAll('.size-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');html.setAttribute('data-size',b.dataset.size);save();});});
+  const themeBtn=document.getElementById('themeToggle');themeBtn.addEventListener('click',()=>{const cur=html.getAttribute('data-theme');const next=cur==='calm'?'dark':'calm';html.setAttribute('data-theme',next);themeBtn.innerHTML=next==='calm'?'&#9790;':'&#9788;';save();});if(html.getAttribute('data-theme')==='dark')themeBtn.innerHTML='&#9788;';
+  const dysBtn=document.getElementById('dyslexiaToggle');dysBtn.addEventListener('click',()=>{const cur=html.getAttribute('data-dyslexia');if(cur==='on'){html.removeAttribute('data-dyslexia');dysBtn.textContent='Dys';dysBtn.classList.remove('active')}else{html.setAttribute('data-dyslexia','on');dysBtn.textContent='Dys';dysBtn.classList.add('active')}save();});if(html.getAttribute('data-dyslexia')==='on')dysBtn.classList.add('active');
+  const sz=html.getAttribute('data-size');if(sz){document.querySelectorAll('.size-btn').forEach(b=>b.classList.toggle('active',b.dataset.size===sz));}
+  window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-window.innerHeight;if(h>0)document.getElementById('scrollFill').style.height=(window.scrollY/h*100)+'%';});
+})();
+</script>
+<script src="neuroease.js"></script>
+</body>
+</html>
